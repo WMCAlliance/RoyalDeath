@@ -37,13 +37,13 @@ public class RDListener implements Listener {
         if (p != null) {
             message = message.replaceAll("(?i)\\{player\\}", variable + p.getName() + string);
             message = message.replaceAll("(?i)\\{dispplayer\\}", variable + p.getDisplayName() + string);
+            message = message.replaceAll("(?i)\\{world\\}", variable + p.getWorld().getName() + string);
+        }
+        if (killer != null) {
             String inHand = killer.getItemInHand().getType().name().replace("_", " ").toLowerCase();
             if (inHand.equalsIgnoreCase("air")) inHand = "fists";
             if (inHand.equalsIgnoreCase("bow")) inHand = "bow & arrow";
             message = message.replaceAll("(?i)\\{hand\\}", variable + inHand + string);
-            message = message.replaceAll("(?i)\\{world\\}", variable + p.getWorld().getName() + string);
-        }
-        if (killer != null) {
             message = message.replaceAll("(?i)\\{killer\\}", variable + killer.getName() + string);
             message = message.replaceAll("(?i)\\{dispkiller\\}", variable + killer.getDisplayName() + string);
         }
