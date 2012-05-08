@@ -48,8 +48,12 @@ public class RDListener implements Listener {
             message = message.replaceAll("(?i)\\{dispkiller\\}", variable + killer.getDisplayName() + string);
         }
         if (mob != null) {
-            if ((mob instanceof Monster) || (mob instanceof Animals) || (mob instanceof EnderDragon))
-                message = message.replaceAll("(?i)\\{mob\\}", variable + mob.toString().toLowerCase().replace("craft", "") + string);
+            if ((mob instanceof Monster) || (mob instanceof Animals) || (mob instanceof EnderDragon)) {
+                String mname;
+                if (mob instanceof Wolf) mname = "wolf";
+                else mname = mob.toString().toLowerCase().replace("craft", "");
+                message = message.replaceAll("(?i)\\{mob\\}", variable + mname + string);
+            }
         }
         return message;
     }
