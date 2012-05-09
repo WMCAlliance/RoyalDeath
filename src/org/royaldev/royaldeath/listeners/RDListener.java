@@ -150,10 +150,9 @@ public class RDListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDeath(PlayerDeathEvent event) {
-        event.setDeathMessage("");
         EntityDamageEvent ev = event.getEntity().getLastDamageCause();
         if (ev == null) {
-            plugin.getServer().broadcastMessage(getDeathMessage(null, event.getEntity(), null));
+            event.setDeathMessage(getDeathMessage(null, event.getEntity(), null));
             return;
         }
         if (ev.isCancelled()) return;
@@ -163,14 +162,14 @@ public class RDListener implements Listener {
             EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) ev;
             Entity damager = e.getDamager();
             String message = getDeathMessage(damager, p, dc);
-            plugin.getServer().broadcastMessage(message);
+            event.setDeathMessage(message);
         } else if (ev instanceof EntityDamageByBlockEvent) {
             EntityDamageByBlockEvent e = (EntityDamageByBlockEvent) ev;
             String message = getDeathMessage(e.getDamager(), p, dc);
-            plugin.getServer().broadcastMessage(message);
+            event.setDeathMessage(message);
         } else {
             String message = getDeathMessage(null, p, dc);
-            plugin.getServer().broadcastMessage(message);
+            event.setDeathMessage(message);
         }
     }
 
