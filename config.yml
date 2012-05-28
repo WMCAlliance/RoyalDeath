@@ -11,6 +11,8 @@
 # {world} <- the world in which the player died
 # {mob} <- what killed it (if it's a monster)
 # {hand} <- what was in the killer's hand (PvP only)
+# If the variable doesn't apply to the type of death in your message, it will not be
+# replaced.
 ###################
 
 ###################
@@ -19,6 +21,7 @@
 # You can change them here
 # "var_color" is the color of the variables (those listed above)
 # "mes_color" is the color of the rest of the message.
+# Get all the colors here: http://jd.bukkit.org/apidocs/org/bukkit/ChatColor.html
 ###################
 
 var_color: DARK_AQUA
