@@ -48,13 +48,11 @@ public class RDListener implements Listener {
             message = message.replaceAll("(?i)\\{dispkiller\\}", variable + killer.getDisplayName() + string);
         }
         if (mob != null) {
-            if ((mob instanceof Monster) || (mob instanceof Animals) || (mob instanceof EnderDragon)) {
-                String mname;
-                if (mob instanceof Wolf) mname = "wolf";
-                else mname = mob.toString().toLowerCase().replace("craft", "");
-                message = message.replaceAll("(?i)\\{mob\\}", variable + mname + string);
-            }
-        }
+            String mname;
+            if (mob instanceof Wolf) mname = "wolf";
+            else mname = mob.toString().toLowerCase().replace("craft", "");
+            message = message.replaceAll("(?i)\\{mob\\}", variable + mname + string);
+        } else message = message.replaceAll("(?i)\\{mob\\}", variable + "mob" + string);
         return message;
     }
 
@@ -123,6 +121,7 @@ public class RDListener implements Listener {
                 break;
         }
         List<String> messages = plugin.getConfig().getStringList(pullFrom);
+        if (messages == null || messages.isEmpty()) return "";
         return messages.get(new Random().nextInt(messages.size()));
     }
 
@@ -150,6 +149,7 @@ public class RDListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDeath(PlayerDeathEvent event) {
+        if (event.getEntity() == null) return;
         EntityDamageEvent ev = event.getEntity().getLastDamageCause();
         if (ev == null) {
             event.setDeathMessage(getDeathMessage(null, event.getEntity(), null));
