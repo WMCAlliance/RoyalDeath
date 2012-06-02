@@ -34,6 +34,7 @@ public class RDListener implements Listener {
     }
 
     public String replacer(String message, Player p, LivingEntity mob, Player killer) {
+        message = string + message;
         if (p != null) {
             message = message.replaceAll("(?i)\\{player\\}", variable + p.getName() + string);
             message = message.replaceAll("(?i)\\{dispplayer\\}", variable + p.getDisplayName() + string);
@@ -52,7 +53,7 @@ public class RDListener implements Listener {
             if (mob instanceof Wolf) mname = "wolf";
             else mname = mob.toString().toLowerCase().replace("craft", "");
             message = message.replaceAll("(?i)\\{mob\\}", variable + mname + string);
-        } else message = message.replaceAll("(?i)\\{mob\\}", variable + "mob" + string);
+        } else message = message.replaceAll("(?i)\\{mob\\}", variable + "monster" + string);
         return message;
     }
 
