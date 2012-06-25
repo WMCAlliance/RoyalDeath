@@ -116,7 +116,7 @@ mag:
 
 mob:
 - "{player} was killed by a {mob}."
-- "{player} was attack by {mob}."
+- "{player} was attacked by {mob}."
 - "An angry {mob} killed {player}."
 
 oth:
