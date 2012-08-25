@@ -20,6 +20,7 @@ package org.royaldev.royaldeath;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.royaldev.royaldeath.commands.CmdRoyalDeath;
 import org.royaldev.royaldeath.listeners.RDListener;
 
 import java.io.File;
@@ -40,6 +41,8 @@ public class RoyalDeath extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
 
         pm.registerEvents(rdListener, this);
+
+        getCommand("royaldeath").setExecutor(new CmdRoyalDeath(this));
 
         log.info("Starting v" + getDescription().getVersion() + ".");
 
