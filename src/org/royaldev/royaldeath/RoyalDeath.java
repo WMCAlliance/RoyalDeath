@@ -23,6 +23,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.royaldev.royalcommands.RoyalCommands;
+import org.royaldev.royalcommands.api.RApiMain;
+import org.royaldev.royalcommands.api.RWorldApi;
 import org.royaldev.royaldeath.commands.CmdRoyalDeath;
 import org.royaldev.royaldeath.listeners.RDListener;
 
@@ -36,14 +38,21 @@ public class RoyalDeath extends JavaPlugin {
     public String getWorldName(World w) {
         Plugin p = getServer().getPluginManager().getPlugin("RoyalCommands");
         if (p == null) return w.getName();
-        return ((RoyalCommands) p).getAPI().getWorldAPI().getWorldName(w);
+        RApiMain ram = ((RoyalCommands) p).getAPI();
+        if (ram == null) return w.getName();
+        RWorldApi rwa = ram.getWorldAPI();
+        if (rwa == null) return w.getName();
+        String name = rwa.getWorldName(w);
+        if (name == null) return w.getName();
+        return name;
     }
 
     public void onEnable() {
 
         log = getLogger();
 
-        if (!new File(getDataFolder() + File.separator + "config.yml").exists()) saveDefaultConfig();
+        if (!new File(getDataFolder() + File.separator + "config.yml").exists())
+            saveDefaultConfig();
 
         final RDListener rdListener = new RDListener(this);
 
