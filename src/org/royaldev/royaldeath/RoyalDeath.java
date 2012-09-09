@@ -18,8 +18,11 @@ package org.royaldev.royaldeath;
  If forked and not credited, alert him.
  */
 
+import org.bukkit.World;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.royaldev.royalcommands.RoyalCommands;
 import org.royaldev.royaldeath.commands.CmdRoyalDeath;
 import org.royaldev.royaldeath.listeners.RDListener;
 
@@ -29,6 +32,12 @@ import java.util.logging.Logger;
 public class RoyalDeath extends JavaPlugin {
 
     public Logger log;
+
+    public String getWorldName(World w) {
+        Plugin p = getServer().getPluginManager().getPlugin("RoyalCommands");
+        if (p == null) return w.getName();
+        return ((RoyalCommands) p).getAPI().getWorldAPI().getWorldName(w);
+    }
 
     public void onEnable() {
 
