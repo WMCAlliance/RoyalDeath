@@ -37,12 +37,16 @@ public class RoyalDeath extends JavaPlugin {
 
     public String getWorldName(World w) {
         Plugin p = getServer().getPluginManager().getPlugin("RoyalCommands");
+        System.out.println("p: " + p);
         if (p == null) return w.getName();
         RApiMain ram = ((RoyalCommands) p).getAPI();
+        System.out.println("ram: " + ram);
         if (ram == null) return w.getName();
         RWorldApi rwa = ram.getWorldAPI();
+        System.out.println("rwa: " + rwa);
         if (rwa == null) return w.getName();
         String name = rwa.getWorldName(w);
+        System.out.println("name: " + name);
         if (name == null) return w.getName();
         return name;
     }
