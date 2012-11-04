@@ -21,7 +21,7 @@
     <target name="compile" depends="init">
         <javac srcdir="${src}" destdir="${build}" includeantruntime="false" debug="true">
             <classpath>
-                <pathelement location="lib/bukkit-1.1-R1-SNAPSHOT.jar"/>
+                <pathelement location="lib/bukkit.jar"/>
             </classpath>
         </javac>
     </target>

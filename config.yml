@@ -119,5 +119,9 @@ mob:
 - "{player} was attacked by {mob}."
 - "An angry {mob} killed {player}."
 
+wit:
+- "{player} was killed by a wither!"
+- "A wither annihilated {player}."
+
 oth:
 - "{player} died of unknown causes."

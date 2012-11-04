@@ -114,6 +114,9 @@ public class RDListener implements Listener {
             case MAGIC:
                 pullFrom = "mag";
                 break;
+            case WITHER:
+                pullFrom = "wit";
+                break;
             case CUSTOM:
                 pullFrom = "oth";
                 break;
