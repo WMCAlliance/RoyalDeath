@@ -38,7 +38,7 @@ public class RDListener implements Listener {
         if (p != null) {
             message = message.replaceAll("(?i)\\{player\\}", variable + p.getName() + string);
             message = message.replaceAll("(?i)\\{dispplayer\\}", variable + p.getDisplayName() + string);
-            message = message.replaceAll("(?i)\\{world\\}", variable + p.getWorld().getName() + string);
+            message = message.replaceAll("(?i)\\{world\\}", variable + plugin.getWorldName(p.getWorld()) + string);
         }
         if (killer != null) {
             String inHand = killer.getItemInHand().getType().name().replace("_", " ").toLowerCase();

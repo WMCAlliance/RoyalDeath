@@ -18,8 +18,14 @@ package org.royaldev.royaldeath;
  If forked and not credited, alert him.
  */
 
+import org.bukkit.World;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.royaldev.royalcommands.RoyalCommands;
+import org.royaldev.royalcommands.api.RApiMain;
+import org.royaldev.royalcommands.api.RWorldApi;
+import org.royaldev.royaldeath.commands.CmdRoyalDeath;
 import org.royaldev.royaldeath.listeners.RDListener;
 
 import java.io.File;
@@ -29,17 +35,36 @@ public class RoyalDeath extends JavaPlugin {
 
     public Logger log;
 
+    public String getWorldName(World w) {
+        Plugin p = getServer().getPluginManager().getPlugin("RoyalCommands");
+        System.out.println("p: " + p);
+        if (p == null) return w.getName();
+        RApiMain ram = ((RoyalCommands) p).getAPI();
+        System.out.println("ram: " + ram);
+        if (ram == null) return w.getName();
+        RWorldApi rwa = ram.getWorldAPI();
+        System.out.println("rwa: " + rwa);
+        if (rwa == null) return w.getName();
+        String name = rwa.getWorldName(w);
+        System.out.println("name: " + name);
+        if (name == null) return w.getName();
+        return name;
+    }
+
     public void onEnable() {
 
         log = getLogger();
 
-        if (!new File(getDataFolder() + File.separator + "config.yml").exists()) saveDefaultConfig();
+        if (!new File(getDataFolder() + File.separator + "config.yml").exists())
+            saveDefaultConfig();
 
         final RDListener rdListener = new RDListener(this);
 
         PluginManager pm = getServer().getPluginManager();
 
         pm.registerEvents(rdListener, this);
+
+        getCommand("royaldeath").setExecutor(new CmdRoyalDeath(this));
 
         log.info("Starting v" + getDescription().getVersion() + ".");
 
