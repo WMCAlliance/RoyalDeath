@@ -1,0 +1,11 @@
+name: RoyalDeath
+main: org.royaldev.royaldeath.RoyalDeath
+version: ${pluginversion}
+author: jkcclemens
+website: http://dev.royaldev.org/
+
+commands:
+  royaldeath:
+    description: Reloads the plugin.
+    usage: /<command>
+    aliases: [rdeath]
