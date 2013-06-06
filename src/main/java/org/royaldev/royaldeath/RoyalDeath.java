@@ -33,6 +33,7 @@ import java.util.logging.Logger;
 public class RoyalDeath extends JavaPlugin {
 
     public Logger log;
+    public Config c;
 
     public String getWorldName(World w) {
         Plugin p = getServer().getPluginManager().getPlugin("RoyalCommands");
@@ -48,6 +49,8 @@ public class RoyalDeath extends JavaPlugin {
 
     public void onEnable() {
         log = getLogger();
+
+        c = new Config(this);
 
         if (!new File(getDataFolder() + File.separator + "config.yml").exists()) saveDefaultConfig();
 

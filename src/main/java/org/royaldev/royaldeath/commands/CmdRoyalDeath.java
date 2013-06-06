@@ -20,7 +20,7 @@ public class CmdRoyalDeath implements CommandExecutor {
                 cs.sendMessage(ChatColor.RED + "You do not have permission for that!");
                 return true;
             }
-            plugin.reloadConfig();
+            plugin.c.reloadConfiguration();
             cs.sendMessage(ChatColor.BLUE + "RoyalDeath v" + ChatColor.GRAY + plugin.getDescription().getVersion() +  ChatColor.BLUE + " reloaded.");
             return true;
         }
