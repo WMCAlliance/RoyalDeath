@@ -1,5 +1,3 @@
-package org.royaldev.royaldeath;
-
 /*
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,6 +15,7 @@ package org.royaldev.royaldeath;
  This plugin was written by jkcclemens <jkc.clemens@gmail.com>.
  If forked and not credited, alert him.
  */
+package org.royaldev.royaldeath;
 
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;

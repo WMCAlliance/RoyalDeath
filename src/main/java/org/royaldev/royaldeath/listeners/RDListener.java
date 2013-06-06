@@ -17,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.royaldev.royaldeath.Config;
 import org.royaldev.royaldeath.RoyalDeath;
 
 import java.util.List;
@@ -26,8 +27,21 @@ public class RDListener implements Listener {
 
     private final RoyalDeath plugin;
 
-    private ChatColor variable;
-    private ChatColor string;
+    private ChatColor variableColor() {
+        try {
+            return ChatColor.valueOf(Config.varColor.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return ChatColor.DARK_AQUA;
+        }
+    }
+
+    private ChatColor stringColor() {
+        try {
+            return ChatColor.valueOf(Config.mesColor.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return ChatColor.DARK_AQUA;
+        }
+    }
 
     private boolean hasCustomName(ItemStack is) {
         ItemMeta im = is.getItemMeta();
@@ -41,21 +55,14 @@ public class RDListener implements Listener {
 
     public RDListener(RoyalDeath instance) {
         plugin = instance;
-        try {
-            variable = ChatColor.valueOf(plugin.getConfig().getString("var_color"));
-            string = ChatColor.valueOf(plugin.getConfig().getString("mes_color"));
-        } catch (Exception e) {
-            variable = ChatColor.DARK_AQUA;
-            string = ChatColor.RED;
-        }
     }
 
     public String replacer(String message, Player p, LivingEntity mob, Player killer) {
-        message = string + message;
+        message = stringColor() + message;
         if (p != null) {
-            message = message.replaceAll("(?i)\\{player}", variable + p.getName() + string);
-            message = message.replaceAll("(?i)\\{dispplayer}", variable + p.getDisplayName() + string);
-            message = message.replaceAll("(?i)\\{world}", variable + plugin.getWorldName(p.getWorld()) + string);
+            message = message.replaceAll("(?i)\\{player}", variableColor() + p.getName() + stringColor());
+            message = message.replaceAll("(?i)\\{dispplayer}", variableColor() + p.getDisplayName() + stringColor());
+            message = message.replaceAll("(?i)\\{world}", variableColor() + plugin.getWorldName(p.getWorld()) + stringColor());
         }
         if (killer != null) {
             ItemStack hand = killer.getItemInHand();
@@ -63,16 +70,16 @@ public class RDListener implements Listener {
             if (inHand.equalsIgnoreCase("air")) inHand = "fists";
             if (inHand.equalsIgnoreCase("bow")) inHand = "bow & arrow";
             if (hasCustomName(hand)) inHand = getCustomName(hand);
-            message = message.replaceAll("(?i)\\{hand}", variable + inHand + string);
-            message = message.replaceAll("(?i)\\{killer}", variable + killer.getName() + string);
-            message = message.replaceAll("(?i)\\{dispkiller}", variable + killer.getDisplayName() + string);
+            message = message.replaceAll("(?i)\\{hand}", variableColor() + inHand + stringColor());
+            message = message.replaceAll("(?i)\\{killer}", variableColor() + killer.getName() + stringColor());
+            message = message.replaceAll("(?i)\\{dispkiller}", variableColor() + killer.getDisplayName() + stringColor());
         }
         if (mob != null) {
             String mname;
             if (mob instanceof Wolf) mname = "wolf";
             else mname = mob.toString().toLowerCase().replace("craft", "");
-            message = message.replaceAll("(?i)\\{mob}", variable + mname + string);
-        } else message = message.replaceAll("(?i)\\{mob}", variable + "monster" + string);
+            message = message.replaceAll("(?i)\\{mob}", variableColor() + mname + stringColor());
+        } else message = message.replaceAll("(?i)\\{mob}", variableColor() + "monster" + stringColor());
         return message;
     }
 
@@ -181,7 +188,7 @@ public class RDListener implements Listener {
     }
 
     private void sendDeathMessage(String message, World in) {
-        boolean interworld = plugin.getConfig().getBoolean("show_interworld", true);
+        boolean interworld = Config.interworld;
         if (in == null) interworld = true;
         if (interworld) {
             plugin.getServer().broadcastMessage(message);
