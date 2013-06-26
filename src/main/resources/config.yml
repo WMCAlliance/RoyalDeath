@@ -5,9 +5,13 @@
 ###################
 # General options!
 # "show_interworld" - Should death messages from other worlds be displayed to players?
+# "disabled_worlds" - List of worlds to disable death messages in
 ###################
 
 show_interworld: true
+
+disabled_worlds:
+- someworldhere
 
 ###################
 # Variables!

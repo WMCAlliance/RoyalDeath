@@ -204,6 +204,7 @@ public class RDListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         if (event.getEntity() == null) return;
         World in = event.getEntity().getWorld();
+        if (Config.disabledWorlds.contains(in.getName())) return;
         EntityDamageEvent ev = event.getEntity().getLastDamageCause();
         String deathMessage;
         if (ev == null) {
