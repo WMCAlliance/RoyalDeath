@@ -8,8 +8,8 @@ import java.util.List;
 public class Config {
 
     public static boolean interworld;
-    public static String varColor;
-    public static String mesColor;
+    public static String variableColor;
+    public static String messageColor;
     public static List<String> disabledWorlds;
     private final RoyalDeath plugin;
 
@@ -30,8 +30,8 @@ public class Config {
         final FileConfiguration c = this.plugin.getConfig();
         Config.interworld = c.getBoolean("show_interworld", true);
 
-        Config.varColor = c.getString("var_color", "DARK_AQUA");
-        Config.mesColor = c.getString("mes_color", "RED");
+        Config.variableColor = c.getString("var_color", "DARK_AQUA");
+        Config.messageColor = c.getString("mes_color", "RED");
 
         Config.disabledWorlds = c.getStringList("disabled_worlds");
     }
