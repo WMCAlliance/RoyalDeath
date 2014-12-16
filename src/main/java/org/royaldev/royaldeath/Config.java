@@ -7,34 +7,33 @@ import java.util.List;
 
 public class Config {
 
+    public static boolean interworld;
+    public static String varColor;
+    public static String mesColor;
+    public static List<String> disabledWorlds;
     private final RoyalDeath plugin;
 
-    public Config(RoyalDeath instance) {
-        plugin = instance;
-        File config = new File(plugin.getDataFolder(), "config.yml");
+    public Config(final RoyalDeath instance) {
+        this.plugin = instance;
+        final File config = new File(this.plugin.getDataFolder(), "config.yml");
         if (!config.exists()) {
-            if (!config.getParentFile().mkdirs()) plugin.getLogger().warning("Could not create config.yml directory.");
-            plugin.saveDefaultConfig();
+            if (!config.getParentFile().mkdirs()) {
+                this.plugin.getLogger().warning("Could not create config.yml directory.");
+            }
+            this.plugin.saveDefaultConfig();
         }
-        reloadConfiguration();
+        this.reloadConfiguration();
     }
 
     public void reloadConfiguration() {
-        plugin.reloadConfig();
-        final FileConfiguration c = plugin.getConfig();
-        interworld = c.getBoolean("show_interworld", true);
+        this.plugin.reloadConfig();
+        final FileConfiguration c = this.plugin.getConfig();
+        Config.interworld = c.getBoolean("show_interworld", true);
 
-        varColor = c.getString("var_color", "DARK_AQUA");
-        mesColor = c.getString("mes_color", "RED");
+        Config.varColor = c.getString("var_color", "DARK_AQUA");
+        Config.mesColor = c.getString("mes_color", "RED");
 
-        disabledWorlds = c.getStringList("disabled_worlds");
+        Config.disabledWorlds = c.getStringList("disabled_worlds");
     }
-
-    public static boolean interworld;
-
-    public static String varColor;
-    public static String mesColor;
-
-    public static List<String> disabledWorlds;
 
 }

@@ -8,23 +8,21 @@ import org.royaldev.royaldeath.RoyalDeath;
 
 public class CmdRoyalDeath implements CommandExecutor {
 
-    private RoyalDeath plugin;
+    private final RoyalDeath plugin;
 
-    public CmdRoyalDeath(RoyalDeath instance) {
-        plugin = instance;
+    public CmdRoyalDeath(final RoyalDeath instance) {
+        this.plugin = instance;
     }
 
-    public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("royaldeath")) {
-            if (!cs.hasPermission("rdeath.royaldeath")) {
-                cs.sendMessage(ChatColor.RED + "You do not have permission for that!");
-                return true;
-            }
-            plugin.c.reloadConfiguration();
-            cs.sendMessage(ChatColor.BLUE + "RoyalDeath v" + ChatColor.GRAY + plugin.getDescription().getVersion() +  ChatColor.BLUE + " reloaded.");
+    public boolean onCommand(final CommandSender cs, final Command cmd, final String label, final String[] args) {
+        if (!cmd.getName().equalsIgnoreCase("royaldeath")) return false;
+        if (!cs.hasPermission("rdeath.royaldeath")) {
+            cs.sendMessage(ChatColor.RED + "You do not have permission for that!");
             return true;
         }
-        return false;
+        this.plugin.c.reloadConfiguration();
+        cs.sendMessage(ChatColor.BLUE + "RoyalDeath v" + ChatColor.GRAY + this.plugin.getDescription().getVersion() + ChatColor.BLUE + " reloaded.");
+        return true;
     }
 
 }
