@@ -40,9 +40,10 @@ public enum DeathType {
     }
 
     public static DeathType getDeathTypeByEvent(final EntityDamageEvent ede) {
+        if (ede == null) return null;
         if (ede.getClass() == BLOCK.getDamageClass()) return BLOCK;
         if (!(ede instanceof EntityDamageByEntityEvent)) {
-            throw new IllegalArgumentException("Death type not supported.");
+            throw new IllegalArgumentException("Death type not supported: " + ede.getClass().getName() + ".");
         }
         final EntityDamageByEntityEvent edbee = (EntityDamageByEntityEvent) ede;
         final Entity damager = edbee.getDamager();
