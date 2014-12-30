@@ -31,6 +31,12 @@ public enum DeathType {
         String replaceVariables(final String message, final EntityDamageEvent damageEvent) {
             return message;
         }
+    },
+    GENERIC(EntityDamageEvent.class) {
+        @Override
+        String replaceVariables(final String message, final EntityDamageEvent damageEvent) {
+            return message;
+        }
     };
 
     private final Class<? extends EntityDamageEvent> damageClass;
@@ -42,9 +48,7 @@ public enum DeathType {
     public static DeathType getDeathTypeByEvent(final EntityDamageEvent ede) {
         if (ede == null) return null;
         if (ede.getClass() == BLOCK.getDamageClass()) return BLOCK;
-        if (!(ede instanceof EntityDamageByEntityEvent)) {
-            throw new IllegalArgumentException("Death type not supported: " + ede.getClass().getName() + ".");
-        }
+        if (!(ede instanceof EntityDamageByEntityEvent)) return GENERIC;
         final EntityDamageByEntityEvent edbee = (EntityDamageByEntityEvent) ede;
         final Entity damager = edbee.getDamager();
         if (damager instanceof Player) return PLAYER;
