@@ -3,6 +3,7 @@ main: org.royaldev.royaldeath.RoyalDeath
 version: ${pluginversion}
 author: jkcclemens
 website: http://dev.royaldev.org/
+softdepend: [Multiverse-Core]
 
 commands:
   royaldeath:

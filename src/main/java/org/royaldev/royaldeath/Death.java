@@ -1,12 +1,11 @@
 package org.royaldev.royaldeath;
 
+import java.util.List;
+import java.util.Random;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.PlayerDeathEvent;
-
-import java.util.List;
-import java.util.Random;
 
 public class Death {
 
@@ -124,7 +123,7 @@ public class Death {
         return message
             .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
             .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
-            .replaceAll("(?i)\\{world}", RUtils.formatVariable(p.getWorld().getName()));
+            .replaceAll("(?i)\\{world}", RUtils.formatVariable(RUtils.getMVWorldName(p.getWorld())));
     }
 
     private String replaceVariables(String message) {

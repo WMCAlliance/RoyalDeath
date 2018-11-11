@@ -17,18 +17,19 @@
  */
 package org.royaldev.royaldeath;
 
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import java.io.File;
+import java.util.logging.Logger;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.royaldev.royaldeath.commands.CmdRoyalDeath;
 import org.royaldev.royaldeath.listeners.DeathListener;
 
-import java.io.File;
-import java.util.logging.Logger;
-
 public class RoyalDeath extends JavaPlugin {
 
     public Logger log;
     public Config c;
+    public static MultiverseCore mvc = null;
 
     public void onDisable() {
         this.log.info("Disabled v" + this.getDescription().getVersion() + ".");
@@ -45,6 +46,8 @@ public class RoyalDeath extends JavaPlugin {
         pm.registerEvents(new DeathListener(this), this);
 
         this.getCommand("royaldeath").setExecutor(new CmdRoyalDeath(this));
+		
+        RoyalDeath.mvc = (MultiverseCore) this.getServer().getPluginManager().getPlugin("Multiverse-Core");
 
         this.log.info("Enabled v" + this.getDescription().getVersion() + ".");
     }
