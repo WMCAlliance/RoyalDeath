@@ -4,7 +4,7 @@ version: ${pluginversion}
 author: jkcclemens
 website: http://dev.royaldev.org/
 softdepend: [Multiverse-Core]
-
+api-version: 1.16
 commands:
   royaldeath:
     description: Reloads the plugin.

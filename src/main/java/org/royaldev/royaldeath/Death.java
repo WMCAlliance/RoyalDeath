@@ -124,7 +124,7 @@ public class Death {
             return message
                     .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
                     .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
-                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(p.getWorld().toString()));
+                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(p.getWorld().getName()));
         } else {
             return message
                     .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
