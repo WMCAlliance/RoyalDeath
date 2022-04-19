@@ -25,25 +25,26 @@
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
-            <id>royal-repo</id>
-            <url>http://minor.royaldev.org:8081/nexus/content/groups/public/</url>
+            <id>Multiverse-Core</id>
+            <url>https://repo.onarandombox.com/content/repositories/multiverse/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.royaldev</groupId>
             <artifactId>royalcommands</artifactId>
-            <version>LATEST</version>
+            <version>4.1.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.onarandombox.multiversecore</groupId>
             <artifactId>Multiverse-Core</artifactId>
-            <version>RELEASE</version>
+            <version>4.3.1</version>
             <type>jar</type>
         </dependency>
     </dependencies>
@@ -52,5 +53,7 @@
         <maven.build.timestamp.format>yyyyMMdd.kkmmss</maven.build.timestamp.format>
         <BUILD_NUMBER>local-${maven.build.timestamp}</BUILD_NUMBER>
         <pluginversion>${project.version}-${BUILD_NUMBER}</pluginversion>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 </project>
