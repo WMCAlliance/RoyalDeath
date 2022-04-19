@@ -41,24 +41,24 @@ public class RUtils {
             return ChatColor.DARK_AQUA;
         }
     }
-	    /**
-     * Gets a world via its real name, or Multiverse name.
-     *
-     * @param name Name of world to get
-     * @return World or null if none exists
-     */
-    public static World getWorld(String name) {
-        World w;
-        w = Bukkit.getWorld(name);
-        if (w != null) return w;
-        if (RoyalDeath.mvc != null) {
-            MultiverseWorld mvw = RoyalDeath.mvc.getMVWorldManager().getMVWorld(name);
-            w = (mvw == null) ? null : mvw.getCBWorld();
-            if (w != null) return w;
-        }
+//	    /**
+//     * Gets a world via its real name, or Multiverse name.
+//     *
+//     * @param name Name of world to get
+//     * @return World or null if none exists
+//     */
+//    public static World getWorld(String name) {
+//        World w;
+//        w = Bukkit.getWorld(name);
+//        if (w != null) return w;
+//        if (RoyalDeath.mvc != null) {
+//            MultiverseWorld mvw = RoyalDeath.mvc.getMVWorldManager().getMVWorld(name);
+//            w = (mvw == null) ? null : mvw.getCBWorld();
+//            if (w != null) return w;
+//        }
 //        w = RoyalDeath.wm.getWorld(name);
-        return w;
-    }
+//        return w;
+//    }
 
     public static String getMVWorldName(World w) {
         if (w == null) throw new NullPointerException("w can't be null!");

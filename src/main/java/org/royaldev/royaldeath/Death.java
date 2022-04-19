@@ -120,10 +120,18 @@ public class Death {
     private String replacePlayerVariables(final String message) {
         if (this.getKilled() == null) return message;
         final Player p = this.getKilled();
-        return message
-            .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
-            .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
-            .replaceAll("(?i)\\{world}", RUtils.formatVariable(RUtils.getMVWorldName(p.getWorld())));
+        if (RoyalDeath.mvc == null){
+            return message
+                    .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
+                    .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
+                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(p.getWorld().toString()));
+        } else {
+            return message
+                    .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
+                    .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
+                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(RUtils.getMVWorldName(p.getWorld())));
+        }
+
     }
 
     private String replaceVariables(String message) {
