@@ -146,5 +146,11 @@ tho:
 - "{player} got a taste of his own medicine."
 - "Reflected damage got the jump on {player}."
 
+dra:
+  - "{player} took on the dragon and didn't survive to tell the story"
+
+fro:
+  - "{player} froze because they couldn't let it go"
+
 oth:
 - "{player} died of unknown causes."

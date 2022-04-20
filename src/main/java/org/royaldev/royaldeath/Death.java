@@ -94,6 +94,12 @@ public class Death {
             case THORNS:
                 pullFrom = "tho";
                 break;
+            case DRAGON_BREATH:
+                pullFrom = "dra";
+                break;
+            case FREEZE:
+                pullFrom = "fro";
+                break;
             case MELTING:
             case CUSTOM:
             default:
@@ -120,17 +126,10 @@ public class Death {
     private String replacePlayerVariables(final String message) {
         if (this.getKilled() == null) return message;
         final Player p = this.getKilled();
-        if (RoyalDeath.mvc == null){
             return message
-                    .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
-                    .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
-                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(p.getWorld().getName()));
-        } else {
-            return message
-                    .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
-                    .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
-                    .replaceAll("(?i)\\{world}", RUtils.formatVariable(RUtils.getMVWorldName(p.getWorld())));
-        }
+                .replaceAll("(?i)\\{player}", RUtils.formatVariable(p.getName()))
+                .replaceAll("(?i)\\{dispplayer}", RUtils.formatVariable(p.getDisplayName()))
+                .replaceAll("(?i)\\{world}", RUtils.formatVariable(RUtils.getMVWorldName(p.getWorld())));
 
     }
 

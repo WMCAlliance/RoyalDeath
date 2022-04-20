@@ -18,6 +18,7 @@
 package org.royaldev.royaldeath;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
+import org.royaldev.royalcommands.RoyalCommands;
 import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.plugin.PluginManager;
@@ -30,6 +31,7 @@ public class RoyalDeath extends JavaPlugin {
     public Logger log;
     public Config c;
     public static MultiverseCore mvc = null;
+    public static RoyalCommands rcmds = null;
 
     public void onDisable() {
         this.log.info("Disabled v" + this.getDescription().getVersion() + ".");
@@ -48,7 +50,13 @@ public class RoyalDeath extends JavaPlugin {
         this.getCommand("royaldeath").setExecutor(new CmdRoyalDeath(this));
 		
         RoyalDeath.mvc = (MultiverseCore) this.getServer().getPluginManager().getPlugin("Multiverse-Core");
-
+        if (RoyalDeath.mvc != null){
+            this.log.info("MultiverseCore detected, will be used where possible");
+        }
+        RoyalDeath.rcmds = (RoyalCommands) this.getServer().getPluginManager().getPlugin("RoyalCommands");
+        if (RoyalDeath.rcmds != null){
+            this.log.info("RoyalCommands detected, will be used where possible");
+        }
         this.log.info("Enabled v" + this.getDescription().getVersion() + ".");
     }
 
