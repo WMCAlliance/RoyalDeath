@@ -21,7 +21,7 @@ public enum DeathType {
             final EntityDamageByEntityEvent edbee = (EntityDamageByEntityEvent) damageEvent;
             final Player p = (Player) edbee.getDamager();
             return message
-                .replaceAll("(?i)\\{hand}", RUtils.formatVariable(RUtils.getItemStackName(p.getItemInHand())))
+                .replaceAll("(?i)\\{hand}", RUtils.formatVariable(RUtils.getItemStackName(p.getInventory().getItemInMainHand())))
                 .replaceAll("(?i)\\{killer}", RUtils.formatVariable(p.getName()))
                 .replaceAll("(?i)\\{dispkiller}", RUtils.formatVariable(p.getDisplayName()));
         }
@@ -48,8 +48,7 @@ public enum DeathType {
     public static DeathType getDeathTypeByEvent(final EntityDamageEvent ede) {
         if (ede == null) return null;
         if (ede.getClass() == BLOCK.getDamageClass()) return BLOCK;
-        if (!(ede instanceof EntityDamageByEntityEvent)) return GENERIC;
-        final EntityDamageByEntityEvent edbee = (EntityDamageByEntityEvent) ede;
+        if (!(ede instanceof final EntityDamageByEntityEvent edbee)) return GENERIC;
         final Entity damager = edbee.getDamager();
         if (damager instanceof Player) return PLAYER;
         else return ENTITY;
